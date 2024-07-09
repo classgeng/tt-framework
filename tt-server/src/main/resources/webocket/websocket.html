@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket 页面客户端</title>
+</head>
+<body>
+ 
+<div>
+    <button onclick="initConnection()">开启WebSocket连接</button>
+</div>
+<div>
+    <input type="text" id="message" ><button onclick="sendMessageFromClient()">发送消息</button>
+</div>
+
+<div>
+  server message list 
+  <ul id="msgList"></ul>
+</div>
+ 
+<div>
+    <button onclick="closeConnection()">关闭连接</button>
+</div>
+ 
+<script>
+    let clientInfo = { userId: 1001, username: '张三' }
+    clientInfo = JSON.stringify(clientInfo)
+    let connectionUrl = `ws://localhost:8080/websocket/message/{${clientInfo}}`
+    console.log(connectionUrl)
+    var webSocket = null
+ 
+    function initConnection() {
+        webSocket = new WebSocket(connectionUrl)
+ 
+        webSocket.onopen = (event) => {
+            console.log('建立新的WebSocket连接')
+        }
+ 
+        webSocket.onmessage = (event) => {
+            const message = JSON.stringify(event.data)
+            console.log(`收到服务端发送的消息，消息内容 -> ${message}`)
+            const msgList = document.querySelector('#msgList')
+            msgList.innerHTML += `<li>${message}</li>`
+        }
+ 
+        webSocket.onerror = (error) => {
+            console.log(`WebSocket连接异常 -> ${JSON.stringify(error)}`)
+        }
+ 
+        webSocket.onclose = (event) => {
+            console.log(`WebSocket连接关闭 -> ${JSON.stringify(event)}`)
+        }
+    }
+ 
+    function sendMessageFromClient() {
+        const message = document.querySelector('#message').value
+        webSocket.send(JSON.stringify({ message: message }))
+    }
+ 
+    function closeConnection() {
+        webSocket.close()
+    }
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSE客户端连接测试</title>
+</head>
+<body>
+
+<script>
+const clientId = 'admin-' + new Date().getTime()
+const url = `http://127.0.0.1:8080/test/sse/release?clientId=${clientId}`
+const connection = new EventSource(url, { withCredentials: true })
+
+connection.onopen = () => {
+  console.log(`连接已建立，状态: ${connection.readyState}`)
+  console.log(`连接地址: ${connection.url}`)
+  
+}
+
+connection.onerror = event => {
+  console.log(JSON.stringify(event))
+}
+
+connection.onmessage = event => {
+  console.log(`- - - - 收到服务器消息 - - - - - -`)
+  console.log(`event.lastEventId -> ${event.lastEventId}`)
+  console.log(`event.data -> ${event.data}`)
+
+  // "{ \"a\": 100, \"b\": \"javascript\", \"c\": true }"
+  const obj = JSON.parse( JSON.parse(event.data))
+  console.log(typeof obj)
+  console.log(obj.a)
+}
+</script>
+
+</body>
+</html>

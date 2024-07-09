@@ -1,0 +1,81 @@
+
+/* 多层路由div样式 */
+.router-background {
+  padding: 10px;
+  background-color: #F5F6F7;
+}
+
+/* 翻页控制 */
+.el-pagination {
+  margin-top: 15px;
+  padding: 10px 0 !important;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+
+/* 主查询样式 */
+.query-table {
+  background-color: #FFFFFF;
+  padding: 15px 10px 0;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* 主查询条件样式 */
+.query-form {
+  background-color: #FFFFFF;
+  padding: 10px 5px 0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* 侧边树 */
+.tree-panel {
+  background-color: #FFFFFF;
+  padding: 10px 5px 0;
+  border-radius: 5px;
+  height: 90vh;
+  overflow-y: auto;
+}
+
+/* 抽屉头 */
+.el-drawer__header {
+  margin-bottom: 0 !important;
+  padding: 15px !important;
+  border-bottom: #E5E8EA 1px solid;
+}
+
+/* https://blog.csdn.net/weixin_40581358/article/details/113648498?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-113648498-blog-112801996.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-113648498-blog-112801996.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=1 */
+/* 移除抽屉的标题黑线 */
+.el-drawer /deep/ :focus {
+  outline: none;
+}
+.el-drawer:focus {
+  outline: none;
+}
+
+/* 抽屉内的表单 */
+.el-drawer__body .el-form {
+  margin: 15px !important;
+}
+
+/* 抽屉保存按钮 */
+.el-drawer__body .drawer-bottom-bar {
+  border-top: #E5E8EA 1px solid;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  text-align: right;
+}
+
+/* https://blog.csdn.net/q283614346/article/details/126853790 */
+/* 弹窗样式设置 */
+div.el-dialog {
+  margin-top: 7vh !important;
+}
+/* 弹窗body高度调整设置 */
+div.el-dialog__body {
+  max-height: 80vh;
+  overflow-x: hidden;
+}
